@@ -4,9 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import igu.Interface_Cuota;
-import logistica.Cliente;
-import logistica.Vehiculo;
+
+import logica.Cliente;
+import logica.Vehiculo;
 
 public class Interface_Arriendo extends Component {
     public JPanel panel1;

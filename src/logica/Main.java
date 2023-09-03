@@ -1,4 +1,4 @@
-package logistica;
+package logica;
 
 import igu.Interface_Arriendo;
 
