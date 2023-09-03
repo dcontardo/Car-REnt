@@ -36,7 +36,7 @@
               <text value="Nombre:"/>
             </properties>
           </component>
-          <component id="1a861" class="javax.swing.JTextField" binding="textField1" default-binding="true">
+          <component id="1a861" class="javax.swing.JTextField" binding="text_cedula">
             <constraints>
               <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -44,7 +44,7 @@
             </constraints>
             <properties/>
           </component>
-          <component id="5b266" class="javax.swing.JTextField" binding="textField2" default-binding="true">
+          <component id="5b266" class="javax.swing.JTextField" binding="text_nombre">
             <constraints>
               <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -70,7 +70,7 @@
               <text value="¿Vigente?"/>
             </properties>
           </component>
-          <component id="bd8fd" class="javax.swing.JTextArea" binding="textArea1" default-binding="true">
+          <component id="bd8fd" class="javax.swing.JTextArea" binding="text_vigente">
             <constraints>
               <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
                 <preferred-size width="50" height="30"/>
@@ -81,7 +81,7 @@
               <enabled value="false"/>
             </properties>
           </component>
-          <component id="44ba1" class="javax.swing.JButton" binding="agregarButton" default-binding="true">
+          <component id="44ba1" class="javax.swing.JButton" binding="btn_ag">
             <constraints>
               <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
