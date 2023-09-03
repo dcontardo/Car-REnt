@@ -166,7 +166,7 @@
               <text value=""/>
             </properties>
           </component>
-          <component id="4a717" class="javax.swing.JTextArea" binding="lst_sel_arriendoCliente" custom-create="true">
+          <component id="4a717" class="javax.swing.JTextArea" binding="lst_sel_arriendoCliente">
             <constraints>
               <grid row="2" column="0" row-span="6" col-span="1" vsize-policy="6" hsize-policy="2" anchor="1" fill="0" indent="0" use-parent-layout="false">
                 <preferred-size width="300" height="250"/>

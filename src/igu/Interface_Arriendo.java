@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.util.List;
 import logica.Cliente;
 import logica.Vehiculo;
 
@@ -22,14 +22,35 @@ public class Interface_Arriendo extends Component {
     private JTextArea text_numero_valor_paga;
     private JButton btn_call_pagarCuota;
 
-    public Interface_Arriendo() {
-        Cliente cliente1 = new Cliente("19427769-5", "David Contardo", true);
-        Cliente cliente2 = new Cliente("17053692-4", "Jonathan Gutiérrez", true);
-        Cliente cliente3 = new Cliente("17741187-6", "Roberto Oreste", true);
+    private Interface_Cliente interfaceCliente; // Referencia a Interface_Cliente
 
-        lst_sel_cliente.addItem(cliente1.getNombre());
-        lst_sel_cliente.addItem(cliente2.getNombre());
-        lst_sel_cliente.addItem(cliente3.getNombre());
+    public Interface_Arriendo() {
+        interfaceCliente = new Interface_Cliente();
+
+        btn_call_lcliente.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                JFrame frame = new JFrame("Interface_Cliente");
+                frame.setContentPane(interfaceCliente.panel2);
+                frame.pack();
+                frame.setVisible(true);
+                frame.setLocationRelativeTo(null); //Para que abra al centro
+
+                // Actualizar el JComboBox después de agregar un nuevo cliente
+                actualizarComboBoxClientes();
+            }
+        });
+        btn_call_pagarCuota.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                mostrarMensajeError("Este es un mensaje de error intencional");
+                JFrame cuota = new JFrame("Interface_Cuota");
+                cuota.setContentPane(new Interface_Cuota().panel3);
+                cuota.pack();
+                cuota.setVisible(true);
+                cuota.setLocationRelativeTo(null); //Para que abra al centro
+            }
+        });
 
         Vehiculo vehiculo1 = new Vehiculo("PK4370",'D',"Mitusbishi Lancer");
         Vehiculo vehiculo2 = new Vehiculo("WD4040",'A',"Hyundai Elantra");
@@ -74,31 +95,19 @@ public class Interface_Arriendo extends Component {
         if (vehiculo10.getCondicion() != 'A') {
             lst_sel_veh.addItem(vehiculo10.getModelo() + " | " + "Patente: " + vehiculo10.getPatente());
         }
-
-
-        btn_call_lcliente.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                JFrame frame = new JFrame("Interface_Cliente");
-                frame.setContentPane(new Interface_Cliente().panel2);
-                frame.pack();
-                frame.setVisible(true);
-                frame.setLocationRelativeTo(null); //Para que abra al centro
-            }
-        });
-        btn_call_pagarCuota.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-               // mostrarMensajeError("Este es un mensaje de error intencional");
-                JFrame cuota = new JFrame("Interface_Cuota");
-                cuota.setContentPane(new Interface_Cuota().panel3);
-                //cuota.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                cuota.pack();
-                cuota.setVisible(true);
-                cuota.setLocationRelativeTo(null); //Para que abra al centro
-            }
-        });
     }
+
+    private void actualizarComboBoxClientes() {
+        List<Cliente> clientes = interfaceCliente.getListaClientes();
+
+        // Limpiar el JComboBox antes de agregar nuevos elementos
+        lst_sel_cliente.removeAllItems();
+
+        for (Cliente cliente : clientes) {
+            lst_sel_cliente.addItem(cliente.getNombre());
+        }
+    }
+
     public void mostrarMensajeInfo(String mensaje) {
         JOptionPane.showMessageDialog(this, mensaje, "Información", JOptionPane.INFORMATION_MESSAGE);
     }

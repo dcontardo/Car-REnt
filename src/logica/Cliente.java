@@ -75,10 +75,10 @@ public class Cliente {
 
     public boolean validarCedula(String rut) {
         // Limpia el formato del RUT, eliminando puntos y guiones y dejando solo números y letra verificadora
-        rut = rut.replaceAll("[.\\-]", "").toUpperCase();
+        // rut = rut.replaceAll("[.\\-]", "").toUpperCase();
 
         // Verifica que el RUT tenga un formato válido (8 o 9 dígitos + guión + dígito verificador)
-        if (!rut.matches("^[0-9]{7,8}-[0-9K]$")) {
+        if (!rut.matches("^[0-9]{7,8}-[0-9kK]$")) {
             generarMensaje("El RUT debe tener un formato válido", TipoMensaje.ERROR);
             return false;
         }
@@ -98,7 +98,8 @@ public class Cliente {
         }
 
         int resto = suma % 11;
-        char digitoEsperado = resto == 0 ? '0' : resto == 1 ? 'K' : (char) (11 - resto + '0');
+        char digitoEsperado = resto == 0 ? '0' : resto == 1 ? (digitoVerificador.equals("K") || digitoVerificador.equals("k") ? digitoVerificador.charAt(0) : 'K') : (char) (11 - resto + '0');
+
 
         // Compara el dígito verificador calculado con el proporcionado
         if (digitoVerificador.charAt(0) != digitoEsperado) {
