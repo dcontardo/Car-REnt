@@ -51,7 +51,7 @@ public class Interface_Cliente extends Component {
         if (rutValido && nombreValido) {
             listaClientes.add(cliente);
             text_vigente.append(nombre + " ha sido agregado y está vigente.\n");
-            mostrarMensajeInfo("Cliente agregado correctamente.");
+            mostrarMensajeInfo("El cliente ha sido agregado correctamente.");
             arriendo.actualizarComboBoxDesdeOtraClase();
         } else {
         // Mostrar mensajes de error específicos
