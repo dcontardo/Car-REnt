@@ -54,14 +54,14 @@ public class Arriendo {
         int montoTotal = obtenerMontoApagar(precioDia);
         int cantidadCuotas = 3;
         int montoCuota = montoTotal / cantidadCuotas;
-        cuotas.clear();
+        ArrayList<CuotaArriendo> cuotasGeneradas = new ArrayList<>();
 
         for (int i = 1; i <= cantidadCuotas; i++) {
             CuotaArriendo cuota = new CuotaArriendo(i, montoCuota);
-            cuotas.add(cuota);
+            cuotasGeneradas.add(cuota);
         }
 
-        return cuotas;
+        return cuotasGeneradas;
     }
 
     public boolean ingresarArriendoConCuotas(Cliente cliente, Vehiculo vehiculo, int precioDia) {

@@ -1,12 +1,15 @@
 package igu;
 
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
-import logica.Cliente;
-import logica.Vehiculo;
+
+import logica.*;
 
 public class Interface_Arriendo extends Component {
     public JPanel panel1;
@@ -24,7 +27,31 @@ public class Interface_Arriendo extends Component {
 
     private Interface_Cliente interfaceCliente; // Referencia a Interface_Cliente
 
+    private ArrayList<ArriendoData> listaArriendos = new ArrayList<>();
+
+    private List<Vehiculo> vehiculosDisponibles = new ArrayList<>();
+
+    int x = 0;
+
     public Interface_Arriendo() {
+
+        if (x == 0){
+
+            vehiculosDisponibles.add(new Vehiculo("PK4370",'D',"Mitusbishi Lancer"));
+            vehiculosDisponibles.add(new Vehiculo("WD4040",'D',"Hyundai Elantra"));
+            vehiculosDisponibles.add(new Vehiculo("KFCL92",'D',"Kia Morning"));
+            vehiculosDisponibles.add(new Vehiculo("XY5678",'D',"Chevrolet Onix"));
+            vehiculosDisponibles.add(new Vehiculo("CD9012",'D',"Kia Rio"));
+            vehiculosDisponibles.add(new Vehiculo("EF3456",'D',"Fiat Strada"));
+            vehiculosDisponibles.add(new Vehiculo("GH6789",'D',"Hyundai Tucson"));
+            vehiculosDisponibles.add(new Vehiculo("KL7890",'D',"Renault Kwid"));
+            vehiculosDisponibles.add(new Vehiculo("OP1234",'D',"Volkswagen Gol"));
+            vehiculosDisponibles.add(new Vehiculo("ST9012",'D',"Nissan Sentra"));
+
+            cargarVehiculosDisponibles();
+            x = x + 1;
+        }
+
         interfaceCliente = new Interface_Cliente();
 
         btn_call_lcliente.addActionListener(new ActionListener() {
@@ -52,49 +79,83 @@ public class Interface_Arriendo extends Component {
             }
         });
 
-        Vehiculo vehiculo1 = new Vehiculo("PK4370",'D',"Mitusbishi Lancer");
-        Vehiculo vehiculo2 = new Vehiculo("WD4040",'A',"Hyundai Elantra");
-        Vehiculo vehiculo3 = new Vehiculo("KFCL92",'D',"Kia Morning");
-        Vehiculo vehiculo4 = new Vehiculo("XY5678",'D',"Chevrolet Onix");
-        Vehiculo vehiculo5 = new Vehiculo("CD9012",'A',"Kia Rio");
-        Vehiculo vehiculo6 = new Vehiculo("EF3456",'D',"Fiat Strada");
-        Vehiculo vehiculo7 = new Vehiculo("GH6789",'D',"Hyundai Tucson");
-        Vehiculo vehiculo8 = new Vehiculo("KL7890",'D',"Renault Kwid");
-        Vehiculo vehiculo9 = new Vehiculo("OP1234",'D',"Volkswagen Gol");
-        Vehiculo vehiculo10 = new Vehiculo("ST9012",'D',"Nissan Sentra");
 
 
-        // Agregar vehículos que no tengan condición 'A' al JComboBox lst_sel_veh
-        if (vehiculo1.getCondicion() != 'A') {
-            lst_sel_veh.addItem(vehiculo1.getModelo() + " | " + "Patente: " + vehiculo1.getPatente());
+
+        text_precio_dia.getDocument().addDocumentListener(new DocumentListener() {
+            public void changedUpdate(DocumentEvent e) {
+                calcularMontoAPagar();
+            }
+            public void removeUpdate(DocumentEvent e) {
+                calcularMontoAPagar();
+            }
+            public void insertUpdate(DocumentEvent e) {
+                calcularMontoAPagar();
+            }
+
+            public void calcularMontoAPagar() {
+                try {
+                    int precioDia = Integer.parseInt(text_precio_dia.getText());
+                    int dias = Integer.parseInt(text_dias.getText());
+                    text_aPagar.setText(String.valueOf(precioDia * dias));
+                } catch (NumberFormatException e) {
+                    // Manejar excepción si no se puede convertir a número
+                }
+            }
+        });
+
+        btn_guardar_cuota.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                guardarArriendo();
+
+                // Cambiar la condición del vehículo seleccionado a "A"
+                int selectedIndex = lst_sel_veh.getSelectedIndex();
+                if (selectedIndex != -1) {
+                    Vehiculo vehiculoSeleccionado = vehiculosDisponibles.get(selectedIndex);
+                    vehiculoSeleccionado.setCondicion('A');
+                    System.out.println(vehiculoSeleccionado.getModelo());
+                    System.out.println(vehiculoSeleccionado.getCondicion());
+
+                    // Actualizar el JComboBox para reflejar el cambio
+                    cargarVehiculosDisponibles();
+                }
+            }
+        });
+
+
+    }
+    private void cargarVehiculosDisponibles() {
+        lst_sel_veh.removeAllItems();
+        for (Vehiculo vehiculo : vehiculosDisponibles) {
+            if (vehiculo.getCondicion() != 'A') {
+                lst_sel_veh.addItem(vehiculo.getModelo() + " | " + "Patente: " + vehiculo.getPatente());
+            }
         }
-        if (vehiculo2.getCondicion() != 'A') {
-            lst_sel_veh.addItem(vehiculo2.getModelo() + " | " + "Patente: " + vehiculo2.getPatente());
-        }
-        if (vehiculo3.getCondicion() != 'A') {
-            lst_sel_veh.addItem(vehiculo3.getModelo() + " | " + "Patente: " + vehiculo3.getPatente());
-        }
-        if (vehiculo4.getCondicion() != 'A') {
-            lst_sel_veh.addItem(vehiculo4.getModelo() + " | " + "Patente: " + vehiculo4.getPatente());
-        }
-        if (vehiculo5.getCondicion() != 'A') {
-            lst_sel_veh.addItem(vehiculo5.getModelo() + " | " + "Patente: " + vehiculo5.getPatente());
-        }
-        if (vehiculo6.getCondicion() != 'A') {
-            lst_sel_veh.addItem(vehiculo6.getModelo() + " | " + "Patente: " + vehiculo6.getPatente());
-        }
-        if (vehiculo7.getCondicion() != 'A') {
-            lst_sel_veh.addItem(vehiculo7.getModelo() + " | " + "Patente: " + vehiculo7.getPatente());
-        }
-        if (vehiculo8.getCondicion() != 'A') {
-            lst_sel_veh.addItem(vehiculo8.getModelo() + " | " + "Patente: " + vehiculo8.getPatente());
-        }
-        if (vehiculo9.getCondicion() != 'A') {
-            lst_sel_veh.addItem(vehiculo9.getModelo() + " | " + "Patente: " + vehiculo9.getPatente());
-        }
-        if (vehiculo10.getCondicion() != 'A') {
-            lst_sel_veh.addItem(vehiculo10.getModelo() + " | " + "Patente: " + vehiculo10.getPatente());
-        }
+    }
+    private void guardarArriendo() {
+        ArriendoData arriendo = new ArriendoData();
+        arriendo.setCliente((String) lst_sel_cliente.getSelectedItem());
+        arriendo.setVehiculo((String) lst_sel_veh.getSelectedItem());
+        arriendo.setFecha(txts_fecha.getText());
+        arriendo.setDias(Integer.parseInt(text_dias.getText()));
+        arriendo.setPrecioDia(Integer.parseInt(text_precio_dia.getText()));
+
+        // Generar cuotas y asignarlas al arriendo
+        Arriendo arriendoLogic = new Arriendo(0, arriendo.getFecha(), arriendo.getDias());
+        ArrayList<CuotaArriendo> cuotas = arriendoLogic.generarCuotas(arriendo.getPrecioDia());
+        arriendo.setCuotas(cuotas);
+
+        // Agregar el arriendo a la lista
+        listaArriendos.add(arriendo);
+
+        // Actualizar la interfaz gráfica para mostrar las cuotas
+        mostrarCuotas(cuotas);
+    }
+
+    private void mostrarCuotas(ArrayList<CuotaArriendo> cuotas) {
+        // Aquí puedes agregar el código para mostrar las cuotas en la interfaz gráfica
+        // Por ejemplo, puedes usar un JTable o cualquier otro componente que prefieras
     }
 
     private void actualizarComboBoxClientes() {
