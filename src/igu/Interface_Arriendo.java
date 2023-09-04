@@ -84,7 +84,7 @@ public class Interface_Arriendo extends Component {
                 cuota.setLocationRelativeTo(null); //Para que abra al centro
             }
         });
-        
+
 
 
         text_precio_dia.getDocument().addDocumentListener(new DocumentListener() {
@@ -102,7 +102,7 @@ public class Interface_Arriendo extends Component {
                 try {
                     int precioDia = Integer.parseInt(text_precio_dia.getText());
                     int dias = Integer.parseInt(text_dias.getText());
-                    text_aPagar.setText(String.valueOf(precioDia * dias));
+                    text_aPagar.setText(String.valueOf("$" + precioDia * dias));
                 } catch (NumberFormatException e) {
                     // Manejar excepción si no se puede convertir a número
                 }

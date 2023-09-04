@@ -256,8 +256,13 @@
               </grid>
             </constraints>
             <properties>
+              <disabledTextColor color="-15790321"/>
               <editable value="false"/>
               <enabled value="false"/>
+              <font name="Fira Code" size="20" style="1"/>
+              <foreground color="-5130311"/>
+              <margin top="15" left="20" bottom="0" right="0"/>
+              <selectionColor color="-16777216"/>
             </properties>
           </component>
           <component id="c7f80" class="javax.swing.JSeparator">
