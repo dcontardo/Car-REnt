@@ -121,7 +121,21 @@ public class Cliente {
             return false;
         }
 
+        // Verifica que el nombre contenga solo letras y espacios
+        if (!nombre.matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$")) {
+            generarMensaje("El nombre solo puede contener letras y espacios", TipoMensaje.ERROR);
+            return false;
+        }
+
+        // Verifica que el nombre no sea demasiado corto o demasiado largo
+        if (nombre.length() < 2 || nombre.length() > 50) {
+            generarMensaje("El nombre debe tener entre 2 y 50 caracteres", TipoMensaje.ERROR);
+            return false;
+        }
+
+        // Si pasa todas las validaciones, el nombre se considera válido
         return true;
     }
+
 
 }
