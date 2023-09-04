@@ -120,6 +120,7 @@ public class Interface_Arriendo extends Component {
                     vehiculoSeleccionado.setCondicion('A');
                     System.out.println(vehiculoSeleccionado.getModelo());
                     System.out.println(vehiculoSeleccionado.getCondicion());
+                    mostrarMensajeInfo("El Vehículo: "+vehiculoSeleccionado.getModelo()+" De patente: "+vehiculoSeleccionado.getPatente()+"\n¡Ha sido arrendado con exito!");
 
                     // Actualizar el JComboBox para reflejar el cambio
                     cargarVehiculosDisponibles();
@@ -138,14 +139,36 @@ public class Interface_Arriendo extends Component {
         }
     }
     private void guardarArriendo() {
+        String cedula = text_dias.getText();
+        String precioDia = text_precio_dia.getText();
+        String cuotasStr = text_cuotas.getText();
+
+        // Verificar si los campos días, precio por día y cuotas están vacíos o contienen solo espacios en blanco
+        if (cedula.trim().isEmpty() || precioDia.trim().isEmpty() || cuotasStr.trim().isEmpty()) {
+            mostrarMensajeError("Los campos Días, Precio por Día y Cantidad de Cuotas no pueden estar vacíos.");
+            return; // Salir del método si alguno de los campos está vacío
+        }
+
+        // Continuar con la conversión y otras operaciones si los campos tienen valores válidos
+        int dias;
+        int precio;
+        int cantidadCuotas;
+        try {
+            dias = Integer.parseInt(cedula);
+            precio = Integer.parseInt(precioDia);
+            cantidadCuotas = Integer.parseInt(cuotasStr);
+        } catch (NumberFormatException e) {
+            mostrarMensajeError("Los campos Días, Precio por Día y Cantidad de Cuotas deben ser números enteros válidos.");
+            return; // Salir del método si la conversión falla
+        }
+
         ArriendoData arriendo = new ArriendoData();
         arriendo.setCliente((String) lst_sel_cliente.getSelectedItem());
         arriendo.setVehiculo((String) lst_sel_veh.getSelectedItem());
         arriendo.setFecha(txts_fecha.getText());
-        arriendo.setDias(Integer.parseInt(text_dias.getText()));
-        arriendo.setPrecioDia(Integer.parseInt(text_precio_dia.getText()));
+        arriendo.setDias(dias);
+        arriendo.setPrecioDia(precio);
 
-        int cantidadCuotas = Integer.parseInt(text_cuotas.getText());
         // Generar cuotas y asignarlas al arriendo
         Arriendo arriendoLogic = new Arriendo(0, arriendo.getFecha(), arriendo.getDias());
         ArrayList<CuotaArriendo> cuotas = arriendoLogic.generarCuotas(arriendo.getPrecioDia(), cantidadCuotas);
@@ -157,6 +180,7 @@ public class Interface_Arriendo extends Component {
         // Actualizar la interfaz gráfica para mostrar las cuotas
         mostrarCuotas(cuotas);
     }
+
 
     private void mostrarCuotas(ArrayList<CuotaArriendo> cuotas) {
         // Limpiar el JTextArea antes de agregar las cuotas
