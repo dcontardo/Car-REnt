@@ -34,6 +34,8 @@ public class Interface_Arriendo extends Component {
     int x = 0;
 
     public Interface_Arriendo() {
+        interfaceCliente = new Interface_Cliente(this);
+        actualizarComboBoxClientes();
 
         if (x == 0){
 
@@ -52,9 +54,6 @@ public class Interface_Arriendo extends Component {
             x = x + 1;
         }
 
-        interfaceCliente = new Interface_Cliente();
-        // Actualizar el JComboBox
-        actualizarComboBoxClientes();
 
 
         btn_call_lcliente.addActionListener(new ActionListener() {
@@ -190,5 +189,9 @@ public class Interface_Arriendo extends Component {
 
     public List<Cliente> getListaClientes() {
         return interfaceCliente.listaClientes;
+    }
+
+    public void actualizarComboBoxDesdeOtraClase() {
+        actualizarComboBoxClientes();
     }
 }
