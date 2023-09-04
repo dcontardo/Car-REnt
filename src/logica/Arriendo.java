@@ -50,9 +50,8 @@ public class Arriendo {
         return false; // El arriendo no es posible.
     }
 
-    public ArrayList<CuotaArriendo> generarCuotas(int precioDia) {
+    public ArrayList<CuotaArriendo> generarCuotas(int precioDia, int cantidadCuotas) {
         int montoTotal = obtenerMontoApagar(precioDia);
-        int cantidadCuotas = 3;
         int montoCuota = montoTotal / cantidadCuotas;
         ArrayList<CuotaArriendo> cuotasGeneradas = new ArrayList<>();
 
@@ -64,13 +63,13 @@ public class Arriendo {
         return cuotasGeneradas;
     }
 
-    public boolean ingresarArriendoConCuotas(Cliente cliente, Vehiculo vehiculo, int precioDia) {
+    public boolean ingresarArriendoConCuotas(Cliente cliente, Vehiculo vehiculo, int precioDia, int cantidadCuotas) {
         if (evaluarArriendo(cliente, vehiculo)) {
             // Cambia la condición del vehículo a "A" (arrendado).
             vehiculo.setCondicion('A');
 
             // Genera las cuotas y las asigna al arriendo.
-            cuotas = generarCuotas(precioDia);
+            cuotas = generarCuotas(precioDia, cantidadCuotas);
 
             return true;
         }

@@ -5,6 +5,12 @@ public class CuotaArriendo {
     private int monto;
     private boolean pagada;
 
+    public CuotaArriendo(int numero, int monto, boolean pagada) {
+        this.numero = numero;
+        this.monto = monto;
+        this.pagada = pagada;
+    }
+
     public CuotaArriendo(int numero, int monto) {
         this.numero = numero;
         this.monto = monto;
@@ -26,4 +32,6 @@ public class CuotaArriendo {
     public void setPagada(boolean pagada) {
         this.pagada = pagada;
     }
+
+
 }
