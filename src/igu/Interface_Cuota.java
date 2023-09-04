@@ -1,7 +1,10 @@
 package igu;
 
+import logica.Cliente;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
 public class Interface_Cuota extends Component {
     private JComboBox lst_sel_cliente;
@@ -17,16 +20,37 @@ public class Interface_Cuota extends Component {
     private JCheckBox checkBox5;
     private JCheckBox checkBox6;
 
-    public void mostrarMensajeInfo(String mensaje) {
-        JOptionPane.showMessageDialog(this, mensaje, "Información", JOptionPane.INFORMATION_MESSAGE);
+    // Referencia a Interface_Arriendo
+    private Interface_Arriendo interfaceArriendo;
+
+    public Interface_Cuota(Interface_Arriendo arriendo) {
+        interfaceArriendo = arriendo;
+        actualizarComboBoxClientes(); // Actualiza el JComboBox al crear la instancia de Interface_Cuota
+    }
+    private void actualizarComboBoxClientes() {
+        // Obtén la lista de clientes desde Interface_Arriendo
+        List<Cliente> clientes = interfaceArriendo.getListaClientes();
+
+        // Limpia el JComboBox antes de agregar nuevos elementos
+        lst_sel_cliente.removeAllItems();
+
+        // Agrega los clientes al JComboBox
+        for (Cliente cliente : clientes) {
+            lst_sel_cliente.addItem(cliente.getNombre());
+        }
+    }
+        public void mostrarMensajeInfo (String mensaje){
+            JOptionPane.showMessageDialog(this, mensaje, "Información", JOptionPane.INFORMATION_MESSAGE);
+        }
+
+        // Método para mostrar mensajes de error
+        public void mostrarMensajeError (String mensaje){
+            JOptionPane.showMessageDialog(this, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        private void createUIComponents () {
+            // TODO: place custom component creation code here
+        }
+
     }
 
-    // Método para mostrar mensajes de error
-    public void mostrarMensajeError(String mensaje) {
-        JOptionPane.showMessageDialog(this, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
-    }
-
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
-    }
-}

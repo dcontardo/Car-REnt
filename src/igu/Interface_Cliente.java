@@ -13,6 +13,7 @@ public class Interface_Cliente extends Component {
     private JTextField text_nombre;
     private JTextArea text_vigente;
     private JButton btn_ag;
+    private JComboBox lst_sel_cliente;
     public JPanel panel2;
 
     // Lista para almacenar clientes
@@ -20,25 +21,26 @@ public class Interface_Cliente extends Component {
 
 
 
-
-
-
-
     public Interface_Cliente() {
+
+
+
         // Agregar ActionListener al botón
         btn_ag.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 agregarCliente();
+                mostrarMensajeError("Este es un mensaje de error intencional");
             }
         });
+
 
         listaClientes.add(new Cliente("19427769-5", "David Contardo", true));
         listaClientes.add(new Cliente("17053692-4", "Jonathan Gutiérrez", true));
         listaClientes.add(new Cliente("17741187-6", "Roberto Oreste", true));
     }
 
-    private void agregarCliente() {
+    private boolean agregarCliente() {
         String cedula = text_cedula.getText();
         String nombre = text_nombre.getText();
 
@@ -51,6 +53,7 @@ public class Interface_Cliente extends Component {
         }
         /*listaClientes.add(cliente);
         text_vigente.append(nombre + " ha sido agregado y está vigente.\n");*/
+        return false;
     }
 
 
