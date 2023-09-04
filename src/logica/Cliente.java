@@ -121,9 +121,6 @@ public class Cliente {
             return false;
         }
 
-        // Aquí puedes agregar más reglas de validación del nombre si es necesario
-
-        // Si todas las validaciones pasan, el nombre se considera válido
         return true;
     }
 

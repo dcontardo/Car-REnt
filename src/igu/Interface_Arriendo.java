@@ -146,9 +146,10 @@ public class Interface_Arriendo extends Component {
         arriendo.setDias(Integer.parseInt(text_dias.getText()));
         arriendo.setPrecioDia(Integer.parseInt(text_precio_dia.getText()));
 
+        int cantidadCuotas = Integer.parseInt(text_cuotas.getText());
         // Generar cuotas y asignarlas al arriendo
         Arriendo arriendoLogic = new Arriendo(0, arriendo.getFecha(), arriendo.getDias());
-        ArrayList<CuotaArriendo> cuotas = arriendoLogic.generarCuotas(arriendo.getPrecioDia());
+        ArrayList<CuotaArriendo> cuotas = arriendoLogic.generarCuotas(arriendo.getPrecioDia(), cantidadCuotas);
         arriendo.setCuotas(cuotas);
 
         // Agregar el arriendo a la lista
@@ -159,9 +160,26 @@ public class Interface_Arriendo extends Component {
     }
 
     private void mostrarCuotas(ArrayList<CuotaArriendo> cuotas) {
-        // Aquí puedes agregar el código para mostrar las cuotas en la interfaz gráfica
-        // Por ejemplo, puedes usar un JTable o cualquier otro componente que prefieras
+        // Limpiar el JTextArea antes de agregar las cuotas
+        text_numero_valor_paga.setText("");
+
+        // Agregar encabezado
+
+        text_numero_valor_paga.append("---------------------------------------------------------------------------\n");
+
+        // Iterar sobre las cuotas y agregarlas al JTextArea
+        for (CuotaArriendo cuota : cuotas) {
+            text_numero_valor_paga.append("              " + cuota.getNumero() + "                          " + "$" + cuota.getMonto() + "                     " + (cuota.isPagada() ? "Sí" : "No") + "\n");
+            text_numero_valor_paga.append("---------------------------------------------------------------------------\n");
+        }
+        txts_fecha.setText(""); // Limpia el campo de fecha
+        text_dias.setText("");  // Limpia el campo de días
+        text_precio_dia.setText(""); // Limpia el campo de precio por día
+        text_aPagar.setText(""); // Limpia el campo de total a pagar
+        //Falta el cuadro de mensaje que se guardo el arriendo
     }
+
+
 
     private void actualizarComboBoxClientes() {
         List<Cliente> clientes = interfaceCliente.getListaClientes();
