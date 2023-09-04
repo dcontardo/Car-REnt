@@ -27,7 +27,7 @@ public class Interface_Arriendo extends Component {
 
     private Interface_Cliente interfaceCliente; // Referencia a Interface_Cliente
 
-    private ArrayList<ArriendoData> listaArriendos = new ArrayList<>();
+    ArrayList<ArriendoData> listaArriendos = new ArrayList<>();
 
     private List<Vehiculo> vehiculosDisponibles = new ArrayList<>();
 

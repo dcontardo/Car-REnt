@@ -3,12 +3,13 @@
   <grid id="27dc6" binding="panel1" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="19" width="1220" height="672"/>
+      <xy x="20" y="19" width="1220" height="1500"/>
     </constraints>
     <properties>
       <background color="-4670531"/>
       <enabled value="true"/>
-      <preferredSize width="1200" height="700"/>
+      <minimumSize width="1190" height="1200"/>
+      <preferredSize width="1200" height="800"/>
       <requestFocusEnabled value="true"/>
     </properties>
     <border type="none"/>
@@ -86,7 +87,9 @@
       <grid id="642dc" layout-manager="GridLayoutManager" row-count="7" column-count="12" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="30" left="20" bottom="20" right="20"/>
         <constraints>
-          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="-1" height="800"/>
+          </grid>
         </constraints>
         <properties/>
         <border type="none"/>
@@ -221,7 +224,7 @@
           </hspacer>
           <component id="8336f" class="javax.swing.JButton" binding="btn_call_pagarCuota">
             <constraints>
-              <grid row="6" column="6" row-span="1" col-span="4" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="6" column="6" row-span="1" col-span="4" vsize-policy="4" hsize-policy="4" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <text value="Pagar Primera Cuotas"/>
@@ -230,7 +233,7 @@
           <component id="e0381" class="javax.swing.JTextArea" binding="text_numero_valor_paga">
             <constraints>
               <grid row="3" column="6" row-span="3" col-span="4" vsize-policy="6" hsize-policy="6" anchor="1" fill="0" indent="0" use-parent-layout="false">
-                <preferred-size width="300" height="250"/>
+                <preferred-size width="300" height="400"/>
               </grid>
             </constraints>
             <properties>
