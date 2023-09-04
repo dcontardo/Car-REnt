@@ -53,6 +53,9 @@ public class Interface_Arriendo extends Component {
         }
 
         interfaceCliente = new Interface_Cliente();
+        // Actualizar el JComboBox
+        actualizarComboBoxClientes();
+
 
         btn_call_lcliente.addActionListener(new ActionListener() {
             @Override
@@ -63,23 +66,25 @@ public class Interface_Arriendo extends Component {
                 frame.setVisible(true);
                 frame.setLocationRelativeTo(null); //Para que abra al centro
 
+
                 // Actualizar el JComboBox después de agregar un nuevo cliente
                 actualizarComboBoxClientes();
+
+
             }
         });
         btn_call_pagarCuota.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                mostrarMensajeError("Este es un mensaje de error intencional");
                 JFrame cuota = new JFrame("Interface_Cuota");
-                cuota.setContentPane(new Interface_Cuota().panel3);
+                Interface_Cuota interfaceCuota = new Interface_Cuota(Interface_Arriendo.this); // Pasa la referencia de Interface_Arriendo
+                cuota.setContentPane(interfaceCuota.panel3);
                 cuota.pack();
                 cuota.setVisible(true);
                 cuota.setLocationRelativeTo(null); //Para que abra al centro
             }
         });
-
-
+        
 
 
         text_precio_dia.getDocument().addDocumentListener(new DocumentListener() {
@@ -166,6 +171,7 @@ public class Interface_Arriendo extends Component {
 
         for (Cliente cliente : clientes) {
             lst_sel_cliente.addItem(cliente.getNombre());
+
         }
     }
 
@@ -180,5 +186,9 @@ public class Interface_Arriendo extends Component {
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
+    }
+
+    public List<Cliente> getListaClientes() {
+        return interfaceCliente.listaClientes;
     }
 }
