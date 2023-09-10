@@ -33,5 +33,13 @@ public class CuotaArriendo {
         this.pagada = pagada;
     }
 
+    public boolean pagarCuota() {
+        if (!pagada) {
+            pagada = true;
+            return true;
+        }
+        return false; // La cuota ya está pagada
+    }
+
 
 }
